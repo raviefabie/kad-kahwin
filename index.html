@@ -647,17 +647,23 @@
     letter-spacing: 0.05em;
   }
   .footer-sub {
-    font-size: clamp(0.82rem, 2.5vw, 0.95rem);
+    font-size: clamp(0.95rem, 2.5vw, 0.95rem);
     color: var(--text);
     font-style: italic;
     margin-bottom: 0.4rem;
+    max-width: 180px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .footer-meta {
     font-family: 'Cinzel', serif;
-    font-size: clamp(0.6rem, 1.8vw, 0.72rem);
-    letter-spacing: 0.05em;
+    font-size: clamp(0.8rem, 1.8vw, 0.8rem);
+    max-width: 180px;
+    letter-spacing: 0.15em;
     color: var(--text);
     opacity: 0.95;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* ANIMATIONS */
@@ -677,6 +683,168 @@
     .maps-row { gap: 1.5rem; }
     .plant-corner { opacity: 0.7; }
   }
+
+  /* ── GUESTBOOK ── */
+.guestbook-section {
+  width: 100%;
+  max-width: 600px;
+  margin: 3rem auto 0;
+  margin-bottom: -2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(201,168,76,0.3);
+  text-align: center;
+}
+
+.guestbook-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.1rem, 2vw, 1.1rem);
+  letter-spacing: 0.1em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.guestbook-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2.5vw, 1rem);
+  color: var(--text);
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+/* Slider */
+.gb-slider-wrap {
+  position: relative;
+  overflow: hidden;
+  min-height: 90px;
+  /* margin-bottom: 0.5rem; */
+  width: 100%;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gb-slider-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gb-card {
+  min-width: 100%;
+  padding: 1.2rem 1.5rem;
+  background: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.gb-card-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--crimson);
+  margin-bottom: 0.4rem;
+}
+
+.gb-card-msg {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 3vw, 1.15rem);
+  color: var(--text);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.gb-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.gb-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.3);
+  transition: background 0.3s;
+}
+
+.gb-dot.active {
+  background: var(--gold);
+}
+
+.gb-empty {
+  font-family: 'Cormorant Garamond', serif;
+  /* font-style: italic; */
+  color: var(--text);
+  font-size: 0.95rem;
+  padding: 1.5rem;
+}
+
+/* Form */
+.gb-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 380px;
+  margin: 0 auto 1rem;
+}
+
+.gb-form input,
+.gb-form textarea {
+  width: 100%;
+  background: rgba(232,221,208,0.6);
+  border: 1px solid rgba(201,168,76,0.35);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+}
+
+.gb-form input::placeholder,
+.gb-form textarea::placeholder {
+  color: var(--text-light);
+  opacity: 0.7;
+}
+
+.gb-form input:focus,
+.gb-form textarea:focus {
+  border-color: var(--gold);
+}
+
+.gb-form textarea {
+  height: 90px;
+}
+
+.gb-submit {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--crimson);
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.gb-submit:hover { background: var(--crimson-light); }
+.gb-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* .gb-feedback {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--gold);
+  min-height: 1.2em;
+  text-align: center;
+} */
 </style>
 </head>
 <body>
@@ -1937,7 +2105,7 @@
     </g>
   </g>
 </svg></div>
-    <div style="position:relative;z-index:3; text-align:center;">
+    <div style="position:relative;z-index:3; text-align:center; width:100%; display:flex; flex-direction:column; align-items:center;">
       <p class="section-title reveal"><strong style="font-size:1.1em;">Untuk Dihubungi</strong></p>
       <div class="divider-gold2"></div>
       <div class="contact-list">
@@ -1951,6 +2119,28 @@
         </div>
       </div>
 
+      <!-- GUESTBOOK -->
+      <div class="guestbook-section reveal">
+        <p class="guestbook-title">Ucapan Tetamu</p>
+        <p class="guestbook-subtitle">Tinggalkan ucapan anda untuk pengantin</p>
+
+        <!-- Slider -->
+        <div class="gb-slider-wrap" id="gb-slider-wrap">
+          <div class="gb-slider-track" id="gb-track">
+            <div class="gb-empty">Jadilah yang pertama meninggalkan ucapan! 🌸</div>
+          </div>
+        </div>
+        <div class="gb-dots" id="gb-dots"></div>
+
+        <!-- Form -->
+        <div class="gb-form">
+          <input type="text" id="gb-name" placeholder="Nama anda" maxlength="50" autocomplete="off" />
+          <textarea id="gb-msg" placeholder="Ucapan anda..." maxlength="200"></textarea>
+          <button class="gb-submit" id="gb-submit" onclick="gbSubmit()">Hantar Ucapan</button>
+          <p class="gb-feedback" id="gb-feedback"></p>
+        </div>
+      </div>
+
       <!-- footer content inline -->
       <div class="footer-inline reveal">
         <div class="divider2" style="margin:2rem auto 1.5rem;"></div>
@@ -1959,7 +2149,6 @@
         <p class="footer-meta">Sabtu, 30 Mei 2026 · Dewan Masjid Ar-Rahmah, Kedah</p>
       </div>
     </div>
-  </section>
 
 
 </div>
@@ -2064,6 +2253,127 @@ function triggerReveals() {
 }
 
 document.addEventListener('DOMContentLoaded', initQRCanvases);
+
+// ── GUESTBOOK (Firebase) ──
+(function() {
+  // Firebase CDN loaded async below; wait for it
+  const FB_CONFIG = {
+    apiKey: "AIzaSyBdZ4W1b9TmQ4lQ8ap2qiQB4aMpBNK6E94",
+    authDomain: "wedding-guestbook-e775b.firebaseapp.com",
+    projectId: "wedding-guestbook-e775b",
+    storageBucket: "wedding-guestbook-e775b.firebasestorage.app",
+    messagingSenderId: "182440182848",
+    appId: "1:182440182848:web:caa3a2243f47b0b7c84ba5"
+  };
+
+  let db, messages = [], current = 0, sliderTimer = null;
+
+  function initFirebase() {
+    if (typeof firebase === 'undefined') { setTimeout(initFirebase, 200); return; }
+    firebase.initializeApp(FB_CONFIG);
+    db = firebase.firestore();
+    listenMessages();
+  }
+
+  function listenMessages() {
+    db.collection('guestbook')
+      .orderBy('ts', 'desc')
+      .limit(10)
+      .onSnapshot(snap => {
+        messages = snap.docs.map(d => d.data()).reverse(); // oldest first
+        renderSlider();
+      });
+  }
+
+  function renderSlider() {
+    const track = document.getElementById('gb-track');
+    const dots  = document.getElementById('gb-dots');
+    if (!track) return;
+
+    clearInterval(sliderTimer);
+
+    if (messages.length === 0) {
+      track.innerHTML = '<div class="gb-empty">Jadilah yang pertama meninggalkan ucapan! 🌸</div>';
+      dots.innerHTML = '';
+      return;
+    }
+
+    track.innerHTML = messages.map(m => `
+      <div class="gb-card">
+        <p class="gb-card-name">${escHtml(m.name)}</p>
+        <p class="gb-card-msg">${escHtml(m.message)}</p>
+      </div>
+    `).join('');
+
+    dots.innerHTML = messages.map((_, i) =>
+      `<div class="gb-dot${i === 0 ? ' active' : ''}" id="gb-dot-${i}"></div>`
+    ).join('');
+
+    current = 0;
+    goTo(current);
+    if (messages.length > 1) {
+      sliderTimer = setInterval(() => {
+        current = (current + 1) % messages.length;
+        goTo(current);
+      }, 4000);
+    }
+  }
+
+  function goTo(idx) {
+    const track = document.getElementById('gb-track');
+    if (!track) return;
+    track.style.transform = `translateX(-${idx * 100}%)`;
+    document.querySelectorAll('.gb-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === idx);
+    });
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  window.gbSubmit = function() {
+    const nameEl = document.getElementById('gb-name');
+    const msgEl  = document.getElementById('gb-msg');
+    const btn    = document.getElementById('gb-submit');
+    const fb     = document.getElementById('gb-feedback');
+
+    const name = nameEl.value.trim();
+    const message = msgEl.value.trim();
+
+    if (!name) { fb.textContent = 'Sila masukkan nama anda.'; return; }
+    if (!message) { fb.textContent = 'Sila tulis ucapan anda.'; return; }
+
+    btn.disabled = true;
+    fb.textContent = 'Menghantar...';
+
+    db.collection('guestbook').add({
+      name, message, ts: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+      nameEl.value = '';
+      msgEl.value = '';
+      fb.textContent = 'Terima kasih atas ucapan anda! 🌸';
+      setTimeout(() => { fb.textContent = ''; }, 4000);
+    }).catch(() => {
+      fb.textContent = 'Ralat. Sila cuba lagi.';
+    }).finally(() => {
+      btn.disabled = false;
+    });
+  };
+
+  // Load Firebase SDKs then init
+  function loadScript(src, cb) {
+    const s = document.createElement('script');
+    s.src = src; s.onload = cb; document.head.appendChild(s);
+  }
+
+  loadScript('https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js', () => {
+    loadScript('https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js', initFirebase);
+  });
+})();
+
 </script>
 
 </body>
