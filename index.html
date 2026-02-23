@@ -403,10 +403,28 @@
     margin-bottom: 0.5rem;
     opacity: 0.5;
   }
+
+  .divider2 {
+    width: 80px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--crimson), transparent);
+    /* margin: 1.5rem auto; */
+    margin-top: -10rem;
+    margin-bottom: -0.5rem;
+    opacity: 0.5;
+  }
+
   .divider-gold {
     width: 60px; height: 1px;
     background: linear-gradient(to right, transparent, var(--gold), transparent);
     margin: 0.8rem auto 0.8rem;
+    opacity: 0.7;
+  }
+
+  .divider-gold2 {
+    width: 60px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0.8rem auto 0.8rem;
+    margin-bottom: -1.5rem;
     opacity: 0.7;
   }
 
@@ -592,6 +610,7 @@
   .contact-entry + .contact-entry {
     border-image: linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent) 1;
     border-top: 1px solid;
+    margin-bottom: -2rem;
   }
   /* contact-num now shows the NAME/ROLE — Cormorant, larger */
   .contact-num {
@@ -625,6 +644,7 @@
     font-size: clamp(2rem, 8vw, 2.8rem);
     color: var(--crimson);
     margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
   }
   .footer-sub {
     font-size: clamp(0.82rem, 2.5vw, 0.95rem);
@@ -1919,7 +1939,7 @@
 </svg></div>
     <div style="position:relative;z-index:3; text-align:center;">
       <p class="section-title reveal"><strong style="font-size:1.1em;">Untuk Dihubungi</strong></p>
-      <div class="divider-gold"></div>
+      <div class="divider-gold2"></div>
       <div class="contact-list">
         <div class="contact-entry reveal">
           <p class="contact-num">Kakak Pengantin Lelaki</p>
@@ -1933,7 +1953,7 @@
 
       <!-- footer content inline -->
       <div class="footer-inline reveal">
-        <div class="divider" style="margin:2rem auto 1.5rem;"></div>
+        <div class="divider2" style="margin:2rem auto 1.5rem;"></div>
         <p class="footer-names">Syafiq &amp; Adina</p>
         <p class="footer-sub">Semoga kehadiran anda memeriahkan majlis kami.</p>
         <p class="footer-meta">Sabtu, 30 Mei 2026 · Dewan Masjid Ar-Rahmah, Kedah</p>
