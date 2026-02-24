@@ -898,9 +898,159 @@
   text-align: center;
   margin-top: 1rem;
 }
+
+/* ── LOADING SCREEN ── */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--cream);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.loading-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.2rem, 8vw, 3.5rem);
+  color: var(--crimson);
+  opacity: 0;
+  animation: loadingFadeIn 0.8s ease 0.3s forwards;
+}
+.loading-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.6rem, 1.8vw, 0.75rem);
+  letter-spacing: 0.3em;
+  color: var(--text-light);
+  text-transform: uppercase;
+  opacity: 0;
+  animation: loadingFadeIn 0.8s ease 0.6s forwards;
+}
+.loading-bar-wrap {
+  width: clamp(140px, 40vw, 220px);
+  height: 1px;
+  background: rgba(201,168,76,0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  opacity: 0;
+  animation: loadingFadeIn 0.5s ease 0.8s forwards;
+}
+.loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, var(--gold), var(--crimson));
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+.loading-dot-row {
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: loadingFadeIn 0.5s ease 1s forwards;
+}
+.loading-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: loadingPulse 1.2s ease-in-out infinite;
+}
+.loading-dot:nth-child(2) { animation-delay: 0.2s; }
+.loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes loadingFadeIn {
+  to { opacity: 1; }
+}
+@keyframes loadingPulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ── HERO ANIMATED ENTRANCE ── */
+.hero-name,
+.hero-amp,
+.hero-date-wrap,
+.hero-quran,
+.countdown-wrap {
+  opacity: 0;
+  transform: translateY(32px);
+  /* override the generic .reveal transition with our own */
+  transition: none !important;
+}
+.hero-name.hero-visible,
+.hero-amp.hero-visible,
+.hero-date-wrap.hero-visible,
+.hero-quran.hero-visible,
+.countdown-wrap.hero-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease !important;
+}
+.hero-label {
+  opacity: 0;
+  animation: none;
+}
+.hero-label.hero-visible {
+  animation: loadingFadeIn 0.8s ease forwards;
+}
+
+/* ── LANGUAGE TOGGLE ── */
+#lang-toggle {
+  position: fixed;
+  bottom: 1.2rem;
+  left: 1.2rem;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  background: rgba(122, 21, 53, 0.92);
+  backdrop-filter: blur(8px);
+  border-radius: 100px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(122,21,53,0.3);
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  user-select: none;
+}
+.lang-btn {
+  padding: 0.55rem 0.85rem;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  transition: color 0.2s;
+}
+.lang-btn.active {
+  color: #fff;
+  background: rgba(255,255,255,0.15);
+  border-radius: 100px;
+}
 </style>
 </head>
 <body>
+
+  <!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <p class="loading-title">Syafiq & Adina</p>
+  <p class="loading-subtitle">Walimatul Urus · 30 Mei 2026</p>
+  <div class="loading-bar-wrap">
+    <div class="loading-bar-fill" id="loading-bar"></div>
+  </div>
+  <div class="loading-dot-row">
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+  </div>
+</div>
 
 <audio id="bg-music" loop preload="none">
   <source src="Westlife -  Beautiful in white (Lyrics).mp3" type="audio/mpeg">
@@ -1165,6 +1315,12 @@
     </svg>
     <span id="music-label">PLAY</span>
   </div>
+
+  <!-- LANGUAGE TOGGLE -->
+<div id="lang-toggle">
+  <button class="lang-btn active" id="btn-bm" onclick="setLang('bm')">BM</button>
+  <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+</div>
 
   <!-- HERO -->
   <section id="hero">
@@ -2269,6 +2425,7 @@ function enterPage() {
   audio.volume = 0.4;
   audio.play().then(() => { userWantsPlay = true; }).catch(()=>{});
   setTimeout(triggerReveals, 400);
+  setTimeout(animateHero, 600);
 }
 
 // MUSIC
@@ -2476,6 +2633,325 @@ document.addEventListener('DOMContentLoaded', initQRCanvases);
   tick();
   setInterval(tick, 1000);
 })();
+
+// ── LOADING SCREEN ──
+(function() {
+  const bar = document.getElementById('loading-bar');
+  const screen = document.getElementById('loading-screen');
+  let progress = 0;
+
+  const interval = setInterval(() => {
+    // Fast at first, slow near end for natural feel
+    const increment = progress < 70 ? 3 : progress < 90 ? 1 : 0.4;
+    progress = Math.min(progress + increment, 99);
+    if (bar) bar.style.width = progress + '%';
+  }, 40);
+
+  const startTime = Date.now();
+  const MIN_DISPLAY = 1800; // ms — minimum time loading screen stays visible
+
+  function finishLoading() {
+    clearInterval(interval);
+    if (bar) bar.style.width = '100%';
+    const elapsed = Date.now() - startTime;
+    const remaining = Math.max(0, MIN_DISPLAY - elapsed);
+    setTimeout(() => {
+      if (screen) screen.classList.add('hidden');
+    }, remaining + 400);
+  }
+
+  if (document.readyState === 'complete') {
+    finishLoading();
+  } else {
+    window.addEventListener('load', finishLoading);
+  }
+})();
+
+// ── HERO ANIMATED ENTRANCE ──
+function animateHero() {
+  // Staggered sequence: label → Syafiq → & → Adina → date → countdown → quran
+  const label = document.querySelector('.hero-label');
+  const name1 = document.querySelectorAll('.hero-name')[0];
+  const amp   = document.querySelector('.hero-amp');
+  const name2 = document.querySelectorAll('.hero-name')[1];
+  const date  = document.querySelector('.hero-date-wrap');
+  const count = document.querySelector('.countdown-wrap');
+  const quran = document.querySelector('.hero-quran');
+
+  const steps = [
+    { el: label,  delay: 200  },
+    { el: name1,  delay: 700  },
+    { el: amp,    delay: 1300 },
+    { el: name2,  delay: 1800 },
+    { el: date,   delay: 2600 },
+    { el: count,  delay: 3400 },
+    { el: quran,  delay: 4400 },
+  ];
+
+  steps.forEach(({ el, delay }) => {
+    if (!el) return;
+    setTimeout(() => el.classList.add('hero-visible'), delay);
+  });
+
+  // Countdown dramatic first-load: numbers tick from 99 down to real value
+  animateCountdownEntrance();
+}
+
+function animateCountdownEntrance() {
+  const target = new Date('2026-05-30T11:00:00+08:00').getTime();
+  const diff   = target - Date.now();
+  if (diff <= 0) return;
+
+  const realD = Math.floor(diff / 86400000);
+  const realH = Math.floor((diff % 86400000) / 3600000);
+  const realM = Math.floor((diff % 3600000) / 60000);
+  const realS = Math.floor((diff % 60000) / 1000);
+
+  // Start from inflated numbers and tick down to real values
+  let fakeD = realD + 9, fakeH = 23, fakeM = 59, fakeS = 59;
+  let ticks = 0;
+  const maxTicks = 20;
+
+  const dramatic = setInterval(() => {
+    ticks++;
+    fakeD = Math.max(fakeD - 1, realD);
+    fakeH = Math.max(fakeH - 1, realH);
+    fakeM = Math.max(fakeM - 2, realM);
+    fakeS = Math.max(fakeS - 3, realS);
+
+    const dEl = document.getElementById('cd-days');
+    const hEl = document.getElementById('cd-hours');
+    const mEl = document.getElementById('cd-mins');
+    const sEl = document.getElementById('cd-secs');
+
+    if (dEl) dEl.textContent = String(fakeD).padStart(2,'0');
+    if (hEl) hEl.textContent = String(fakeH).padStart(2,'0');
+    if (mEl) mEl.textContent = String(fakeM).padStart(2,'0');
+    if (sEl) sEl.textContent = String(fakeS).padStart(2,'0');
+
+    if (ticks >= maxTicks) clearInterval(dramatic);
+  }, 80);
+}
+
+// ── LANGUAGE TOGGLE ──
+const TRANSLATIONS = {
+  bm: {
+    // Entrance
+    'entrance-label':       'Walimatul Urus',
+    'entrance-date-text':   'Sabtu · 30 Mei 2026',
+    'btn-open-text':        'Buka Jemputan ✦',
+    'entrance-music-note':  '♪ Muzik akan dimainkan selepas masuk',
+    // Hero
+    'hero-label-text':      'Walimatul Urus',
+    'hero-date-text':       'SABTU | 30.05.2026',
+    'hero-hijri-text':      'Bersamaan 14 Zulhijjah 1447 AH',
+    'hero-venue-text':      '📍 Dewan Masjid Ar-Rahmah',
+    'hero-quran-text':      '"Dan Kami ciptakan kamu berpasang-pasangan"',
+    'hero-quran-ref':       '[ An-Naba 78:8 ]',
+    // Countdown labels
+    'cd-label-d': 'Hari', 'cd-label-h': 'Jam',
+    'cd-label-m': 'Minit', 'cd-label-s': 'Saat',
+    // Invitation
+    'inv-greeting-text':    'Jemputan Perkahwinan',
+    'inv-salutation':       'Assalamualaikum & Salam Sejahtera',
+    'inv-body-text':        "Dengan penuh rasa syukur, kami menjemput Dato'/Datin/Tuan/Puan/Encik/Cik & Sekeluarga ke Majlis Perkahwinan di antara",
+    'inv-connector-text':   'Dengan pilihan hatinya,',
+    'inv-putera': 'Putera kepada',
+    'inv-puteri': 'Puteri kepada',
+    // Details
+    'details-title':        'Butiran Majlis',
+    'location-title':       'Lokasi Majlis',
+    'tlv-tarikh':           'Tarikh',
+    'tlv-masa':             'Masa',
+    'tlv-ketibaan':         'Ketibaan\nPengantin',
+    'details-date':         'Sabtu, 30 Mei 2026',
+    'details-hijri':        '14 Zulhijjah 1447 AH',
+    'details-time':         '11:00 Pagi – 4:30 Petang',
+    'details-arrival':      '12:00 Tengah Hari',
+    // Contact
+    'contact-title':        'Untuk Dihubungi',
+    'contact-1-name':       'Kakak Pengantin Lelaki',
+    'contact-2-name':       'Abang Pengantin Lelaki',
+    // Guestbook
+    'gb-title':             'Ucapan Tetamu',
+    'gb-subtitle':          'Tinggalkan ucapan anda untuk pengantin',
+    'gb-name-ph':           'Nama anda',
+    'gb-msg-ph':            'Ucapan anda...',
+    'gb-submit-text':       'Hantar Ucapan',
+    // RSVP
+    'rsvp-title':           'Pengesahan Kehadiran',
+    'rsvp-subtitle':        'Sila sahkan kehadiran anda sebelum 20 Mei 2026',
+    'rsvp-name-ph':         'Nama anda',
+    'rsvp-pax-ph':          'Bilangan hadir (cth: 2)',
+    'rsvp-yes-text':        '✓ Hadir',
+    'rsvp-no-text':         '✗ Tidak Hadir',
+    'rsvp-submit-text':     'Hantar',
+    // WhatsApp
+    'wa-text':              'Kongsikan Jemputan',
+    // Footer
+    'footer-sub-text':      'Semoga kehadiran anda memeriahkan majlis kami.',
+    'footer-meta-text':     'Sabtu, 30 Mei 2026 · Dewan Masjid Ar-Rahmah, Kedah',
+  },
+  en: {
+    'entrance-label':       'Wedding Celebration',
+    'entrance-date-text':   'Saturday · 30 May 2026',
+    'btn-open-text':        'Open Invitation ✦',
+    'entrance-music-note':  '♪ Music will play after entering',
+    'hero-label-text':      'Wedding Celebration',
+    'hero-date-text':       'SATURDAY | 30.05.2026',
+    'hero-hijri-text':      'Corresponding 14 Zulhijjah 1447 AH',
+    'hero-venue-text':      '📍 Dewan Masjid Ar-Rahmah',
+    'hero-quran-text':      '"And We created you in pairs"',
+    'hero-quran-ref':       '[ An-Naba 78:8 ]',
+    'cd-label-d': 'Days', 'cd-label-h': 'Hours',
+    'cd-label-m': 'Mins', 'cd-label-s': 'Secs',
+    'inv-greeting-text':    'Wedding Invitation',
+    'inv-salutation':       'Assalamualaikum & Warm Greetings',
+    'inv-body-text':        'With hearts full of gratitude, we joyfully invite you & family to the Wedding Celebration of',
+    'inv-connector-text':   'Together with,',
+    'inv-putera': 'Son of',
+    'inv-puteri': 'Daughter of',
+    'details-title':        'Event Details',
+    'location-title':       'Venue',
+    'tlv-tarikh':           'Date',
+    'tlv-masa':             'Time',
+    'tlv-ketibaan':         'Bridal\nArrival',
+    'details-date':         'Saturday, 30 May 2026',
+    'details-hijri':        '14 Zulhijjah 1447 AH',
+    'details-time':         '11:00 AM – 4:30 PM',
+    'details-arrival':      '12:00 Noon',
+    'contact-title':        'Contact Us',
+    'contact-1-name':       "Groom's Sister",
+    'contact-2-name':       "Groom's Brother",
+    'gb-title':             'Guest Wishes',
+    'gb-subtitle':          'Leave your wishes for the couple',
+    'gb-name-ph':           'Your name',
+    'gb-msg-ph':            'Your message...',
+    'gb-submit-text':       'Send Wishes',
+    'rsvp-title':           'RSVP',
+    'rsvp-subtitle':        'Please confirm attendance by 20 May 2026',
+    'rsvp-name-ph':         'Your name',
+    'rsvp-pax-ph':          'Number attending (e.g. 2)',
+    'rsvp-yes-text':        '✓ Attending',
+    'rsvp-no-text':         '✗ Not Attending',
+    'rsvp-submit-text':     'Submit',
+    'wa-text':              'Share Invitation',
+    'footer-sub-text':      'Your presence would mean the world to us.',
+    'footer-meta-text':     'Saturday, 30 May 2026 · Dewan Masjid Ar-Rahmah, Kedah',
+  }
+};
+
+let currentLang = 'bm';
+
+window.setLang = function(lang) {
+  currentLang = lang;
+  const t = TRANSLATIONS[lang];
+
+  // Toggle button states
+  document.getElementById('btn-bm').classList.toggle('active', lang === 'bm');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+  // Helper to safely set textContent
+  function setText(sel, text) {
+    const el = document.querySelector(sel);
+    if (el) el.textContent = text;
+  }
+  function setPlaceholder(id, text) {
+    const el = document.getElementById(id);
+    if (el) el.placeholder = text;
+  }
+
+  // Entrance
+  setText('.entrance-label',      t['entrance-label']);
+  setText('.entrance-date',       t['entrance-date-text']);
+  setText('.btn-open',            t['btn-open-text']);
+  setText('.entrance-music-note', t['entrance-music-note']);
+
+  // Hero
+  setText('.hero-label',  t['hero-label-text']);
+  setText('.hero-date',   t['hero-date-text']);
+  setText('.hero-hijri',  t['hero-hijri-text']);
+  setText('.hero-venue',  t['hero-venue-text']);
+
+  // Quran verse (has inner span)
+  const quranEl = document.querySelector('.hero-quran');
+  if (quranEl) {
+    quranEl.childNodes[0].textContent = t['hero-quran-text'];
+    const span = quranEl.querySelector('span');
+    if (span) span.textContent = t['hero-quran-ref'];
+  }
+
+  // Countdown labels
+  const cdLabels = document.querySelectorAll('.countdown-label');
+  const cdKeys = ['cd-label-d','cd-label-h','cd-label-m','cd-label-s'];
+  cdLabels.forEach((el, i) => { if (cdKeys[i]) el.textContent = t[cdKeys[i]]; });
+
+  // Invitation
+  setText('.inv-greeting',   t['inv-greeting-text']);
+  setText('.inv-salutation', t['inv-salutation']);
+
+  // inv-body has names inside so only update first text node
+  const invBody = document.querySelector('.inv-body');
+  if (invBody) invBody.childNodes[0].textContent = t['inv-body-text'] + ' ';
+  setText('.inv-connector', t['inv-connector-text']);
+  const invParents = document.querySelectorAll('.inv-parents');
+  if (invParents[0]) invParents[0].childNodes[0].textContent = t['inv-putera'];
+  if (invParents[1]) invParents[1].childNodes[0].textContent = t['inv-puteri'];
+
+  // Details
+  // Invitation section title (plain text node, no strong)
+  const invTitle = document.querySelector('#invitation .section-title');
+  if (invTitle) invTitle.textContent = t['inv-greeting-text'];
+
+  // Details, Location, Contact (wrapped in strong)
+  const sectionTitles = document.querySelectorAll('.section-title strong');
+  if (sectionTitles[0]) sectionTitles[0].textContent = t['details-title'];
+  if (sectionTitles[1]) sectionTitles[1].textContent = t['location-title'];
+  if (sectionTitles[2]) sectionTitles[2].textContent = t['contact-title'];
+
+  const tlvLabels = document.querySelectorAll('.tlv-label');
+  const tlvKeys = ['tlv-tarikh','tlv-masa','tlv-ketibaan'];
+  tlvLabels.forEach((el, i) => { if (tlvKeys[i]) el.textContent = t[tlvKeys[i]]; });
+
+  const tlvRights = document.querySelectorAll('.tlv-right');
+  if (tlvRights[0]) {
+    tlvRights[0].childNodes[0].textContent = t['details-date'];
+    if (tlvRights[0].childNodes[1]) tlvRights[0].childNodes[1].textContent = t['details-hijri'];
+  }
+  if (tlvRights[1]) tlvRights[1].textContent = t['details-time'];
+  if (tlvRights[2]) tlvRights[2].textContent = t['details-arrival'];
+
+  // Contact
+  // const contactTitle = document.querySelector('#contact .section-title strong');
+  // if (contactTitle) contactTitle.textContent = t['contact-title'];
+  const contactNums = document.querySelectorAll('.contact-num');
+  if (contactNums[0]) contactNums[0].textContent = t['contact-1-name'];
+  if (contactNums[1]) contactNums[1].textContent = t['contact-2-name'];
+
+  // Guestbook
+  setText('.guestbook-title',    t['gb-title']);
+  setText('.guestbook-subtitle', t['gb-subtitle']);
+  setPlaceholder('gb-name',      t['gb-name-ph']);
+  setPlaceholder('gb-msg',       t['gb-msg-ph']);
+  setText('#gb-submit',          t['gb-submit-text']);
+
+  // RSVP
+  setText('.rsvp-title',    t['rsvp-title']);
+  setText('.rsvp-subtitle', t['rsvp-subtitle']);
+  setPlaceholder('rsvp-name', t['rsvp-name-ph']);
+  setPlaceholder('rsvp-pax',  t['rsvp-pax-ph']);
+  setText('#rsvp-yes',  t['rsvp-yes-text']);
+  setText('#rsvp-no',   t['rsvp-no-text']);
+  setText('#rsvp-submit', t['rsvp-submit-text']);
+
+  // WhatsApp
+  const waBtn = document.querySelector('.wa-share-btn');
+  if (waBtn) waBtn.childNodes[waBtn.childNodes.length - 1].textContent = ' ' + t['wa-text'];
+
+  // Footer
+  setText('.footer-sub',  t['footer-sub-text']);
+  setText('.footer-meta', t['footer-meta-text']);
+};
 </script>
 </body>
 </html>
