@@ -606,16 +606,21 @@
   /* CONTACT — elegant centered text */
   #contact { text-align: center; }
   .contact-list {
-    margin: 1.8rem auto 0;
-    max-width: 340px;
+    margin: 1.2rem auto 0;
+    max-width: 420px;
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    justify-content: center;
   }
   .contact-entry {
-    padding: 1.2rem 0;
+    padding: 0.8rem 1.5rem;
+    flex: 1;
   }
   .contact-entry + .contact-entry {
-    border-image: linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent) 1;
-    border-top: 1px solid;
-    margin-bottom: -2rem;
+    border-image: linear-gradient(to bottom, transparent, rgba(201,168,76,0.5), transparent) 1;
+    border-left: 1px solid;
+    border-top: none;
   }
   /* contact-num now shows the NAME/ROLE — Cormorant, larger */
   .contact-num {
@@ -641,7 +646,7 @@
 
   /* FOOTER — inline inside contact section */
   .footer-inline {
-    margin-top: 0.5rem;
+    margin-top: -2rem;
     text-align: center;
   }
   .footer-names {
@@ -693,9 +698,8 @@
 .guestbook-section {
   width: 100%;
   max-width: 600px;
-  margin: 3rem auto 0;
-  margin-bottom: -2rem;
-  padding-top: 2rem;
+  margin: 0.8rem auto 0;
+  padding-top: 1rem;
   border-top: 1px solid rgba(201,168,76,0.3);
   text-align: center;
 }
@@ -2181,7 +2185,7 @@
 </svg></div>
     <div style="position:relative;z-index:3; text-align:center; width:100%; display:flex; flex-direction:column; align-items:center;">
       <p class="section-title reveal"><strong style="font-size:1.1em;">Untuk Dihubungi</strong></p>
-      <div class="divider-gold2"></div>
+      <!-- <div class="divider-gold2"></div> -->
       <div class="contact-list">
         <div class="contact-entry reveal">
           <p class="contact-num">Kakak Pengantin Lelaki</p>
