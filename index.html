@@ -306,6 +306,11 @@
     box-sizing: border-box;
   }
 
+  #contact {
+    min-height: unset;
+    padding: 5rem 2rem 4rem;
+    align-items: flex-start;
+  }
 
   /* HERO */
   #hero {
@@ -377,7 +382,7 @@
   }
 
   .hero-quran {
-    margin-top: -0.3rem;
+    margin-top: 0.3rem;
     font-size: clamp(0.85rem, 2.5vw, 1rem);
     font-style: italic;
     color: var(--text);
@@ -436,6 +441,7 @@
     text-transform: uppercase;
     color: var(--crimson);
     margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
     text-align: center;
     font-weight: 600;
   }
@@ -558,7 +564,6 @@
       align-items: center;
       gap: 1.8rem;
     }
-
   }
 
   /* LOCATION — merged into #details */
@@ -572,7 +577,7 @@
   .maps-row {
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    gap: 1rem;
     flex-wrap: wrap;
     margin-top: 1.2rem;
     margin-bottom: 0;
@@ -845,6 +850,50 @@
   min-height: 1.2em;
   text-align: center;
 } */
+
+/* ── COUNTDOWN ── */
+.countdown-wrap {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 1.5rem);
+  margin: 1rem auto 0;
+}
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+.countdown-num {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  color: var(--crimson);
+  line-height: 1;
+  min-width: 2ch;
+  text-align: center;
+}
+.countdown-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.6rem, 1.8vw, 0.75rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.countdown-sep {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  color: var(--gold);
+  align-self: flex-start;
+  padding-top: 0.1rem;
+  opacity: 0.6;
+}
+.countdown-done {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  color: var(--crimson);
+  text-align: center;
+  margin-top: 1rem;
+}
 </style>
 </head>
 <body>
@@ -1337,7 +1386,6 @@
   </g>
 </svg>
     </div>
-
     <p class="hero-label">Walimatul Urus</p>
     <div class="hero-name reveal">Syafiq</div>
     <span class="hero-amp reveal">&</span>
@@ -1347,18 +1395,42 @@
       <p class="hero-hijri">Bersamaan 14 Zulhijjah 1447 AH</p>
       <p class="hero-venue">📍 Dewan Masjid Ar-Rahmah</p>
     </div>
-    <div class="divider"></div>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown-wrap reveal" id="countdown-wrap">
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-days">--</span>
+        <span class="countdown-label">Hari</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-hours">--</span>
+        <span class="countdown-label">Jam</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-mins">--</span>
+        <span class="countdown-label">Minit</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-secs">--</span>
+        <span class="countdown-label">Saat</span>
+      </div>
+    </div>
+
+    <!-- <div class="divider"></div> -->
     <p class="hero-quran reveal">
       "Dan Kami ciptakan kamu berpasang-pasangan"
       <span>[ An-Naba 78:8 ]</span>
     </p>
   </section>
 
-
-
   <!-- INVITATION -->
   <section id="invitation">
-    <div style="position:absolute;top:-35px;right:-35px;width:clamp(200px,40vw,320px);pointer-events:none;z-index:2;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 397.332 500">
+    <!-- new change -->
+    <div style="position:absolute;top:-35px;right:-35px;width:clamp(200px,40vw,320px);pointer-events:none;z-index:2;transform:scaleX(-1);"><svg 
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 397.332 500">
   <defs>
     <mask id="mask1-A5">
       <path d="M169.913,113.225c.545-.5.584-.5.952.082,1.246,1.431,2.4-3.082,4.068-1.545,1.2.44,2.7-.725,4.318-1.038,1.054,1.215,1.917.8,2.181-.872a143.905,143.905,0,0,1,22.468.275c1.466,2.353,3.923-.433,5.382,1.04a16.925,16.925,0,0,1,2.808,13.059c-1.674,2.39-.711,4.146-3.028,5.4,1.965,2.086-.556,2.463-1.816,3.279-2.205.336-5.629,2.373-2.841,5.387,2.281-.4,4.046-1.919,5.331.959,2.426.237,7.911,2.826,6.688,5.107,3.1-.909,2.753.71,5.329,2.428-2.5,2.208-5.736,2.61-8.235,4.892-.659.306-1.828-2.45-2.413-1.345.829,6.2,7.955,3.868,7.593,10.172.406,3.487-4.639,2.383-6.319,4.266-2,2.585-.944,6.335-4.189,7.925-.809.53-1.016-.042-1.5-.67-.669,2.622-1.883.42-2.9-.393-5.984,4.579-12.5,8.925-20.273,4.487-3.3-.833-5.911,2.285-7.789,2.351,1.129-1.989-8.222,3.713-9.93,3.567-7.308,3.006-15.243,1.955-22.491.358-3.1-.076-1.067-5.7-3.83-5.333,3.977-3.516-3.327-4.478-5.294-4.544-2.555-.861-4.185-.2-6.662-2.268.488-1.237,1.521-1.432.018-2.231-1.369,5.142-3.352-2.75-5.775.214-1.222.909-.285-2.447-1.771-.853-.088-1.636,1.244-2.246-.461-3.159,1.317-.626-.1-1.99.937-3.092.486-1.131-.789-.158-1.163-1.548-1.815,2.689.6-3.172,1.257-.256,1.321.453.012-1.129,1.163-1.272.913-.808,1.72-1.8,2.682-2.528,2.445-2.9-5.811-1.43-5.028-5.25-.627-2.654-1.378-1.633.2-4.894-1.889-6.415,4.891-4.242,6.036-12.3,1.1-2.211,2.119-1.587,3.641-.48-.087-1.926,1.7.573,2.542-.377a5.475,5.475,0,0,0,.485-4.17c.862-2.53,1.393-.821,1.342-4.184,1.535-.8,2.462-2.258,1.18-4.176,2-.7,3.136-.9,3.17-3.191a6.026,6.026,0,0,0,4.428-2.013c1.025-.567,2.6,1.24,2.88-.754,3.38-1.825,8.483-.779,12.5-.581a17.933,17.933,0,0,0,5.333-.068c1.187.218,1.332,3.08,2.924,1.942,1.521.535,5.235-3.832,3.03,0C169.933,114.953,170.392,114.251,169.913,113.225Z" fill="#fff"/>
@@ -1601,7 +1673,8 @@
 
   <!-- EVENT DETAILS + LOCATION -->
   <section id="details">
-    <div style="position:absolute;top:-35px;right:-35px;width:clamp(200px,40vw,320px);pointer-events:none;z-index:2;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 397.332 500">
+    <!-- New Change -->
+    <div style="position:absolute;top:-35px;right:-35px;width:clamp(200px,40vw,320px);pointer-events:none;z-index:2;transform:scaleX(-1);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 397.332 500">
   <defs>
     <mask id="mask1-A7">
       <path d="M169.913,113.225c.545-.5.584-.5.952.082,1.246,1.431,2.4-3.082,4.068-1.545,1.2.44,2.7-.725,4.318-1.038,1.054,1.215,1.917.8,2.181-.872a143.905,143.905,0,0,1,22.468.275c1.466,2.353,3.923-.433,5.382,1.04a16.925,16.925,0,0,1,2.808,13.059c-1.674,2.39-.711,4.146-3.028,5.4,1.965,2.086-.556,2.463-1.816,3.279-2.205.336-5.629,2.373-2.841,5.387,2.281-.4,4.046-1.919,5.331.959,2.426.237,7.911,2.826,6.688,5.107,3.1-.909,2.753.71,5.329,2.428-2.5,2.208-5.736,2.61-8.235,4.892-.659.306-1.828-2.45-2.413-1.345.829,6.2,7.955,3.868,7.593,10.172.406,3.487-4.639,2.383-6.319,4.266-2,2.585-.944,6.335-4.189,7.925-.809.53-1.016-.042-1.5-.67-.669,2.622-1.883.42-2.9-.393-5.984,4.579-12.5,8.925-20.273,4.487-3.3-.833-5.911,2.285-7.789,2.351,1.129-1.989-8.222,3.713-9.93,3.567-7.308,3.006-15.243,1.955-22.491.358-3.1-.076-1.067-5.7-3.83-5.333,3.977-3.516-3.327-4.478-5.294-4.544-2.555-.861-4.185-.2-6.662-2.268.488-1.237,1.521-1.432.018-2.231-1.369,5.142-3.352-2.75-5.775.214-1.222.909-.285-2.447-1.771-.853-.088-1.636,1.244-2.246-.461-3.159,1.317-.626-.1-1.99.937-3.092.486-1.131-.789-.158-1.163-1.548-1.815,2.689.6-3.172,1.257-.256,1.321.453.012-1.129,1.163-1.272.913-.808,1.72-1.8,2.682-2.528,2.445-2.9-5.811-1.43-5.028-5.25-.627-2.654-1.378-1.633.2-4.894-1.889-6.415,4.891-4.242,6.036-12.3,1.1-2.211,2.119-1.587,3.641-.48-.087-1.926,1.7.573,2.542-.377a5.475,5.475,0,0,0,.485-4.17c.862-2.53,1.393-.821,1.342-4.184,1.535-.8,2.462-2.258,1.18-4.176,2-.7,3.136-.9,3.17-3.191a6.026,6.026,0,0,0,4.428-2.013c1.025-.567,2.6,1.24,2.88-.754,3.38-1.825,8.483-.779,12.5-.581a17.933,17.933,0,0,0,5.333-.068c1.187.218,1.332,3.08,2.924,1.942,1.521.535,5.235-3.832,3.03,0C169.933,114.953,170.392,114.251,169.913,113.225Z" fill="#fff"/>
@@ -1858,7 +1931,7 @@
       </div>
 
       <!-- divider -->
-      <div class="divider" style="margin:1.8rem auto;"></div>
+      <!-- <div class="divider" style="margin:1.8rem auto;"></div> -->
 
       <!-- Lokasi Majlis -->
       <p class="section-title reveal"><strong>Lokasi Majlis</strong></p>
@@ -1887,7 +1960,8 @@
 
   <!-- CONTACT + FOOTER -->
   <section id="contact">
-    <div style="position:absolute;top:-35px;right:-35px;width:clamp(200px,40vw,320px);pointer-events:none;z-index:2;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 397.332 500">
+      <!-- New Change -->
+    <div style="position:absolute;top:-35px;right:-35px;width:clamp(200px,40vw,320px);pointer-events:none;z-index:2;transform:scaleX(-1);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 397.332 500">
   <defs>
     <mask id="mask1-A9">
       <path d="M169.913,113.225c.545-.5.584-.5.952.082,1.246,1.431,2.4-3.082,4.068-1.545,1.2.44,2.7-.725,4.318-1.038,1.054,1.215,1.917.8,2.181-.872a143.905,143.905,0,0,1,22.468.275c1.466,2.353,3.923-.433,5.382,1.04a16.925,16.925,0,0,1,2.808,13.059c-1.674,2.39-.711,4.146-3.028,5.4,1.965,2.086-.556,2.463-1.816,3.279-2.205.336-5.629,2.373-2.841,5.387,2.281-.4,4.046-1.919,5.331.959,2.426.237,7.911,2.826,6.688,5.107,3.1-.909,2.753.71,5.329,2.428-2.5,2.208-5.736,2.61-8.235,4.892-.659.306-1.828-2.45-2.413-1.345.829,6.2,7.955,3.868,7.593,10.172.406,3.487-4.639,2.383-6.319,4.266-2,2.585-.944,6.335-4.189,7.925-.809.53-1.016-.042-1.5-.67-.669,2.622-1.883.42-2.9-.393-5.984,4.579-12.5,8.925-20.273,4.487-3.3-.833-5.911,2.285-7.789,2.351,1.129-1.989-8.222,3.713-9.93,3.567-7.308,3.006-15.243,1.955-22.491.358-3.1-.076-1.067-5.7-3.83-5.333,3.977-3.516-3.327-4.478-5.294-4.544-2.555-.861-4.185-.2-6.662-2.268.488-1.237,1.521-1.432.018-2.231-1.369,5.142-3.352-2.75-5.775.214-1.222.909-.285-2.447-1.771-.853-.088-1.636,1.244-2.246-.461-3.159,1.317-.626-.1-1.99.937-3.092.486-1.131-.789-.158-1.163-1.548-1.815,2.689.6-3.172,1.257-.256,1.321.453.012-1.129,1.163-1.272.913-.808,1.72-1.8,2.682-2.528,2.445-2.9-5.811-1.43-5.028-5.25-.627-2.654-1.378-1.633.2-4.894-1.889-6.415,4.891-4.242,6.036-12.3,1.1-2.211,2.119-1.587,3.641-.48-.087-1.926,1.7.573,2.542-.377a5.475,5.475,0,0,0,.485-4.17c.862-2.53,1.393-.821,1.342-4.184,1.535-.8,2.462-2.258,1.18-4.176,2-.7,3.136-.9,3.17-3.191a6.026,6.026,0,0,0,4.428-2.013c1.025-.567,2.6,1.24,2.88-.754,3.38-1.825,8.483-.779,12.5-.581a17.933,17.933,0,0,0,5.333-.068c1.187.218,1.332,3.08,2.924,1.942,1.521.535,5.235-3.832,3.03,0C169.933,114.953,170.392,114.251,169.913,113.225Z" fill="#fff"/>
@@ -2374,7 +2448,30 @@ document.addEventListener('DOMContentLoaded', initQRCanvases);
   });
 })();
 
+// ── COUNTDOWN ──
+(function() {
+  const target = new Date('2026-05-30T11:00:00+08:00').getTime();
+  function tick() {
+    const now = Date.now();
+    const diff = target - now;
+    const wrap = document.getElementById('countdown-wrap');
+    if (!wrap) return;
+    if (diff <= 0) {
+      wrap.innerHTML = '<p class="countdown-done">Hari Bahagia Telah Tiba! 🌸</p>';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
 </script>
-
 </body>
 </html>
