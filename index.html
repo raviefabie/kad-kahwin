@@ -329,7 +329,6 @@
     letter-spacing: 0.08em;
     font-weight: 600;
     color: var(--crimson);
-    font-weight: 600;
     text-transform: uppercase;
     margin-bottom: 1.5rem;
     animation: fadeUp 1s 0.2s both;
@@ -403,7 +402,6 @@
   .divider {
     width: 80px; height: 1px;
     background: linear-gradient(to right, transparent, var(--crimson), transparent);
-    /* margin: 1.5rem auto; */
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     opacity: 0.5;
@@ -412,7 +410,6 @@
   .divider2 {
     width: 80px; height: 1px;
     background: linear-gradient(to right, transparent, var(--crimson), transparent);
-    /* margin: 1.5rem auto; */
     margin-top: -10rem;
     margin-bottom: -0.5rem;
     opacity: 0.5;
@@ -436,7 +433,7 @@
   /* SECTION TITLE */
   .section-title {
     font-family: 'Cinzel', serif;
-    font-size: clamp(0.85rem, 2vw, 0.85rem);
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--crimson);
@@ -450,8 +447,7 @@
   #invitation { text-align: center; }
   .inv-greeting {
     font-family: 'Cinzel', serif;
-    font-size: clamp(0.75rem, 3vw, 0.75rem);
-    /* font-weight: 600; */
+    font-size: clamp(0.7rem, 3vw, 0.85rem);
     color: var(--crimson);
     margin-bottom: 0.8rem;
   }
@@ -558,14 +554,6 @@
     color: var(--text);
   }
 
-    @media (max-width: 480px) {
-    .timeline {
-      flex-direction: column;
-      align-items: center;
-      gap: 1.8rem;
-    }
-  }
-
   /* LOCATION — merged into #details */
   .location-address {
     font-size: clamp(0.85rem, 2.5vw, 1rem);
@@ -657,7 +645,7 @@
     letter-spacing: 0.05em;
   }
   .footer-sub {
-  font-size: clamp(1rem, 2.5vw, 1rem);
+  font-size: clamp(0.82rem, 2.5vw, 1rem);
   color: var(--text-light);
   font-style: italic;
   margin-bottom: 0.4rem;
@@ -666,10 +654,10 @@
   margin-right: auto;
   padding-left: clamp(2rem, 12vw, 4rem);
   padding-right: clamp(2rem, 12vw, 4rem);
-}
-.footer-meta {
+  }
+  .footer-meta {
   font-family: 'Cinzel', serif;
-  font-size: clamp(0.72rem, 1.8vw, 0.72rem);
+  font-size: clamp(0.6rem, 1.8vw, 0.72rem);
   max-width: 260px;
   letter-spacing: 0.12em;
   color: var(--text);
@@ -678,7 +666,7 @@
   margin-right: auto;
   padding-left: clamp(2rem, 12vw, 4rem);
   padding-right: clamp(2rem, 12vw, 4rem);
-}
+  }
 
   /* ANIMATIONS */
   @keyframes fadeUp {
@@ -699,112 +687,110 @@
   }
 
   /* ── GUESTBOOK ── */
-.guestbook-section {
+  .guestbook-section {
   width: 100%;
   max-width: 600px;
   margin: 0.8rem auto 0;
   padding-top: 1rem;
   border-top: 1px solid rgba(201,168,76,0.3);
   text-align: center;
-}
+  }
 
-.guestbook-title {
+  .guestbook-title {
   font-family: 'Cinzel', serif;
-  font-size: clamp(1.1rem, 2vw, 1.1rem);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   letter-spacing: 0.1em;
   color: var(--crimson);
   text-transform: uppercase;
   margin-bottom: 0.4rem;
-}
+  }
 
-.guestbook-subtitle {
+  .guestbook-subtitle {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1rem, 2.5vw, 1rem);
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
   color: var(--text);
   margin-bottom: 2rem;
   font-style: italic;
-}
+  }
 
-/* Slider */
-.gb-slider-wrap {
+  /* Slider */
+  .gb-slider-wrap {
   position: relative;
   overflow: hidden;
   min-height: 90px;
-  /* margin-bottom: 0.5rem; */
   width: 100%;
   max-width: 350px;
   margin-left: auto;
   margin-right: auto;
-}
+  }
 
-.gb-slider-track {
+  .gb-slider-track {
   display: flex;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
+  }
 
-.gb-card {
+  .gb-card {
   min-width: 100%;
   padding: 1.2rem 1.5rem;
   background: rgba(201,168,76,0.06);
   border: 1px solid rgba(201,168,76,0.2);
   border-radius: 8px;
   box-sizing: border-box;
-}
+  }
 
-.gb-card-name {
+  .gb-card-name {
   font-family: 'Cinzel', serif;
   font-size: 0.78rem;
   letter-spacing: 0.1em;
   color: var(--crimson);
   margin-bottom: 0.4rem;
-}
+  }
 
-.gb-card-msg {
+  .gb-card-msg {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(1rem, 3vw, 1.15rem);
   color: var(--text);
   font-style: italic;
   line-height: 1.5;
-}
+  }
 
-.gb-dots {
+  .gb-dots {
   display: flex;
   justify-content: center;
   gap: 6px;
   margin-top: 0.8rem;
   margin-bottom: 2rem;
-}
+  }
 
-.gb-dot {
+  .gb-dot {
   width: 6px; height: 6px;
   border-radius: 50%;
   background: rgba(201,168,76,0.3);
   transition: background 0.3s;
-}
+  }
 
-.gb-dot.active {
+  .gb-dot.active {
   background: var(--gold);
-}
+  }
 
-.gb-empty {
+  .gb-empty {
   font-family: 'Cormorant Garamond', serif;
-  /* font-style: italic; */
   color: var(--text);
   font-size: 0.95rem;
   padding: 1.5rem;
-}
+  }
 
-/* Form */
-.gb-form {
+  /* Form */
+  .gb-form {
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
   max-width: 380px;
   margin: 0 auto 1rem;
-}
+  }
 
-.gb-form input,
-.gb-form textarea {
+  .gb-form input,
+  .gb-form textarea {
   width: 100%;
   background: rgba(232,221,208,0.6);
   border: 1px solid rgba(201,168,76,0.35);
@@ -816,24 +802,24 @@
   outline: none;
   transition: border-color 0.2s;
   resize: none;
-}
+  }
 
-.gb-form input::placeholder,
-.gb-form textarea::placeholder {
+  .gb-form input::placeholder,
+  .gb-form textarea::placeholder {
   color: var(--text-light);
   opacity: 0.7;
-}
+  }
 
-.gb-form input:focus,
-.gb-form textarea:focus {
+  .gb-form input:focus,
+  .gb-form textarea:focus {
   border-color: var(--gold);
-}
+  }
 
-.gb-form textarea {
+  .gb-form textarea {
   height: 90px;
-}
+  }
 
-.gb-submit {
+  .gb-submit {
   font-family: 'Cinzel', serif;
   font-size: 0.78rem;
   letter-spacing: 0.15em;
@@ -845,66 +831,58 @@
   padding: 0.75rem 1.5rem;
   cursor: pointer;
   transition: background 0.2s, opacity 0.2s;
-}
+  }
 
-.gb-submit:hover { background: var(--crimson-light); }
-.gb-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+  .gb-submit:hover { background: var(--crimson-light); }
+  .gb-submit:disabled { opacity: 0.5; cursor: not-allowed; }
 
-/* .gb-feedback {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 0.95rem;
-  color: var(--gold);
-  min-height: 1.2em;
-  text-align: center;
-} */
 
-/* ── COUNTDOWN ── */
-.countdown-wrap {
+  /* ── COUNTDOWN ── */
+  .countdown-wrap {
   display: flex;
   justify-content: center;
   gap: clamp(1rem, 4vw, 1.5rem);
   margin: 1rem auto 0;
-}
-.countdown-unit {
+  }
+  .countdown-unit {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.3rem;
-}
-.countdown-num {
+  }
+  .countdown-num {
   font-family: 'Cinzel', serif;
   font-size: clamp(1.8rem, 6vw, 3rem);
   color: var(--crimson);
   line-height: 1;
   min-width: 2ch;
   text-align: center;
-}
-.countdown-label {
+  }
+  .countdown-label {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(0.6rem, 1.8vw, 0.75rem);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text);
-}
-.countdown-sep {
+  }
+  .countdown-sep {
   font-family: 'Cinzel', serif;
   font-size: clamp(1.5rem, 5vw, 2.5rem);
   color: var(--gold);
   align-self: flex-start;
   padding-top: 0.1rem;
   opacity: 0.6;
-}
-.countdown-done {
+  }
+  .countdown-done {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(1.4rem, 5vw, 2rem);
   color: var(--crimson);
   text-align: center;
   margin-top: 1rem;
-}
+  }
 
-/* ── LOADING SCREEN ── */
-#loading-screen {
+  /* ── LOADING SCREEN ── */
+  #loading-screen {
   position: fixed;
   inset: 0;
   background: var(--cream);
@@ -915,20 +893,20 @@
   justify-content: center;
   gap: 2rem;
   transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-#loading-screen.hidden {
+  }
+  #loading-screen.hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-}
-.loading-title {
+  }
+  .loading-title {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(2.2rem, 8vw, 3.5rem);
   color: var(--crimson);
   opacity: 0;
   animation: loadingFadeIn 0.8s ease 0.3s forwards;
-}
-.loading-subtitle {
+  }
+  .loading-subtitle {
   font-family: 'Cinzel', serif;
   font-size: clamp(0.6rem, 1.8vw, 0.75rem);
   letter-spacing: 0.3em;
@@ -936,8 +914,8 @@
   text-transform: uppercase;
   opacity: 0;
   animation: loadingFadeIn 0.8s ease 0.6s forwards;
-}
-.loading-bar-wrap {
+  }
+  .loading-bar-wrap {
   width: clamp(140px, 40vw, 220px);
   height: 1px;
   background: rgba(201,168,76,0.2);
@@ -945,67 +923,67 @@
   overflow: hidden;
   opacity: 0;
   animation: loadingFadeIn 0.5s ease 0.8s forwards;
-}
-.loading-bar-fill {
+  }
+  .loading-bar-fill {
   height: 100%;
   width: 0%;
   background: linear-gradient(to right, var(--gold), var(--crimson));
   border-radius: 2px;
   transition: width 0.1s linear;
-}
-.loading-dot-row {
+  }
+  .loading-dot-row {
   display: flex;
   gap: 0.5rem;
   opacity: 0;
   animation: loadingFadeIn 0.5s ease 1s forwards;
-}
-.loading-dot {
+  }
+  .loading-dot {
   width: 5px; height: 5px;
   border-radius: 50%;
   background: var(--gold);
   animation: loadingPulse 1.2s ease-in-out infinite;
-}
-.loading-dot:nth-child(2) { animation-delay: 0.2s; }
-.loading-dot:nth-child(3) { animation-delay: 0.4s; }
+  }
+  .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dot:nth-child(3) { animation-delay: 0.4s; }
 
-@keyframes loadingFadeIn {
+  @keyframes loadingFadeIn {
   to { opacity: 1; }
-}
-@keyframes loadingPulse {
+  }
+  @keyframes loadingPulse {
   0%, 100% { opacity: 0.3; transform: scale(0.8); }
   50% { opacity: 1; transform: scale(1.2); }
-}
+  }
 
-/* ── HERO ANIMATED ENTRANCE ── */
-.hero-name,
-.hero-amp,
-.hero-date-wrap,
-.hero-quran,
-.countdown-wrap {
+  /* ── HERO ANIMATED ENTRANCE ── */
+  .hero-name,
+  .hero-amp,
+  .hero-date-wrap,
+  .hero-quran,
+  .countdown-wrap {
   opacity: 0;
   transform: translateY(32px);
   /* override the generic .reveal transition with our own */
   transition: none !important;
-}
-.hero-name.hero-visible,
-.hero-amp.hero-visible,
-.hero-date-wrap.hero-visible,
-.hero-quran.hero-visible,
-.countdown-wrap.hero-visible {
+  }
+  .hero-name.hero-visible,
+  .hero-amp.hero-visible,
+  .hero-date-wrap.hero-visible,
+  .hero-quran.hero-visible,
+  .countdown-wrap.hero-visible {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.8s ease, transform 0.8s ease !important;
-}
-.hero-label {
+  }
+  .hero-label {
   opacity: 0;
   animation: none;
-}
-.hero-label.hero-visible {
+  }
+  .hero-label.hero-visible {
   animation: loadingFadeIn 0.8s ease forwards;
-}
+  }
 
-/* ── LANGUAGE TOGGLE ── */
-#lang-toggle {
+  /* ── LANGUAGE TOGGLE ── */
+  #lang-toggle {
   position: fixed;
   bottom: 1.2rem;
   left: 1.2rem;
@@ -1021,8 +999,8 @@
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   user-select: none;
-}
-.lang-btn {
+  }
+  .lang-btn {
   padding: 0.55rem 0.85rem;
   color: rgba(255,255,255,0.5);
   cursor: pointer;
@@ -1032,12 +1010,12 @@
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   transition: color 0.2s;
-}
-.lang-btn.active {
+  }
+  .lang-btn.active {
   color: #fff;
   background: rgba(255,255,255,0.15);
   border-radius: 100px;
-}
+  }
 </style>
 </head>
 <body>
@@ -2652,7 +2630,7 @@ document.addEventListener('DOMContentLoaded', initQRCanvases);
   }, 40);
 
   const startTime = Date.now();
-  const MIN_DISPLAY = 1800; // ms — minimum time loading screen stays visible
+  const MIN_DISPLAY = 2500; // ms — minimum time loading screen stays visible
 
   function finishLoading() {
     clearInterval(interval);
@@ -2782,16 +2760,6 @@ const TRANSLATIONS = {
     'gb-name-ph':           'Nama anda',
     'gb-msg-ph':            'Ucapan anda...',
     'gb-submit-text':       'Hantar Ucapan',
-    // RSVP
-    'rsvp-title':           'Pengesahan Kehadiran',
-    'rsvp-subtitle':        'Sila sahkan kehadiran anda sebelum 20 Mei 2026',
-    'rsvp-name-ph':         'Nama anda',
-    'rsvp-pax-ph':          'Bilangan hadir (cth: 2)',
-    'rsvp-yes-text':        '✓ Hadir',
-    'rsvp-no-text':         '✗ Tidak Hadir',
-    'rsvp-submit-text':     'Hantar',
-    // WhatsApp
-    'wa-text':              'Kongsikan Jemputan',
     // Footer
     'footer-sub-text':      'Semoga kehadiran anda memeriahkan majlis kami.',
     'footer-meta-text':     'Sabtu, 30 Mei 2026 · Dewan Masjid Ar-Rahmah, Kedah',
@@ -2832,14 +2800,7 @@ const TRANSLATIONS = {
     'gb-name-ph':           'Your name',
     'gb-msg-ph':            'Your message...',
     'gb-submit-text':       'Send Wishes',
-    'rsvp-title':           'RSVP',
-    'rsvp-subtitle':        'Please confirm attendance by 20 May 2026',
-    'rsvp-name-ph':         'Your name',
-    'rsvp-pax-ph':          'Number attending (e.g. 2)',
-    'rsvp-yes-text':        '✓ Attending',
-    'rsvp-no-text':         '✗ Not Attending',
-    'rsvp-submit-text':     'Submit',
-    'wa-text':              'Share Invitation',
+    // Footer
     'footer-sub-text':      'Your presence would mean the world to us.',
     'footer-meta-text':     'Saturday, 30 May 2026 · Dewan Masjid Ar-Rahmah, Kedah',
   }
@@ -2926,8 +2887,6 @@ window.setLang = function(lang) {
   if (tlvRights[2]) tlvRights[2].textContent = t['details-arrival'];
 
   // Contact
-  // const contactTitle = document.querySelector('#contact .section-title strong');
-  // if (contactTitle) contactTitle.textContent = t['contact-title'];
   const contactNums = document.querySelectorAll('.contact-num');
   if (contactNums[0]) contactNums[0].textContent = t['contact-1-name'];
   if (contactNums[1]) contactNums[1].textContent = t['contact-2-name'];
@@ -2938,19 +2897,6 @@ window.setLang = function(lang) {
   setPlaceholder('gb-name',      t['gb-name-ph']);
   setPlaceholder('gb-msg',       t['gb-msg-ph']);
   setText('#gb-submit',          t['gb-submit-text']);
-
-  // RSVP
-  setText('.rsvp-title',    t['rsvp-title']);
-  setText('.rsvp-subtitle', t['rsvp-subtitle']);
-  setPlaceholder('rsvp-name', t['rsvp-name-ph']);
-  setPlaceholder('rsvp-pax',  t['rsvp-pax-ph']);
-  setText('#rsvp-yes',  t['rsvp-yes-text']);
-  setText('#rsvp-no',   t['rsvp-no-text']);
-  setText('#rsvp-submit', t['rsvp-submit-text']);
-
-  // WhatsApp
-  const waBtn = document.querySelector('.wa-share-btn');
-  if (waBtn) waBtn.childNodes[waBtn.childNodes.length - 1].textContent = ' ' + t['wa-text'];
 
   // Footer
   setText('.footer-sub',  t['footer-sub-text']);
