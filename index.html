@@ -2365,7 +2365,7 @@
 // QR Canvas recolour
 function recolourQR(imgEl, canvasEl) {
   const bgR=232, bgG=221, bgB=208;
-  const ctx = canvasEl.getContext('2d');
+  const ctx = canvasEl.getContext('2d', { willReadFrequently: true });
   canvasEl.width = 90; canvasEl.height = 90;
   ctx.drawImage(imgEl, 0, 0, 90, 90);
   const d = ctx.getImageData(0,0,90,90);
