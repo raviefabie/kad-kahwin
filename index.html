@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Walimatul Urus – Syafiq & Adina</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
@@ -330,7 +331,6 @@
     color: var(--crimson);
     text-transform: uppercase;
     margin-bottom: 1.5rem;
-    animation: fadeUp 1s 0.2s both;
   }
 
   .hero-name {
@@ -338,7 +338,6 @@
     font-size: clamp(2rem, 16vw, 7rem);
     color: var(--crimson);
     line-height: 1.1;
-    animation: fadeUp 1s 0.4s both;
   }
 
   .hero-amp {
@@ -346,12 +345,10 @@
     font-size: clamp(2.5rem, 10vw, 4.5rem);
     color: var(--crimson);
     display: block;
-    animation: fadeUp 1s 0.6s both;
   }
 
   .hero-date-wrap {
     margin-top: 1.5rem;
-    animation: fadeUp 1s 0.8s both;
   }
 
   .hero-date {
@@ -386,7 +383,6 @@
     color: var(--text);
     max-width: 380px;
     line-height: 1.7;
-    animation: fadeUp 1s 1s both;
   }
   .hero-quran span {
     display: block;
@@ -958,26 +954,24 @@
   .hero-date-wrap,
   .hero-quran,
   .countdown-wrap {
-  opacity: 0;
-  transform: translateY(32px);
-  /* override the generic .reveal transition with our own */
-  transition: none !important;
+    opacity: 0;
+    transform: translateY(32px);
+    transition: none !important;
   }
   .hero-name.hero-visible,
   .hero-amp.hero-visible,
   .hero-date-wrap.hero-visible,
   .hero-quran.hero-visible,
   .countdown-wrap.hero-visible {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.8s ease, transform 0.8s ease !important;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease, transform 0.8s ease !important;
   }
   .hero-label {
-  opacity: 0;
-  animation: none;
+    opacity: 0;
   }
   .hero-label.hero-visible {
-  animation: loadingFadeIn 0.8s ease forwards;
+    animation: loadingFadeIn 0.8s ease forwards;
   }
 
   /* ── LANGUAGE TOGGLE ── */
@@ -2628,7 +2622,7 @@ document.addEventListener('DOMContentLoaded', initQRCanvases);
   }, 40);
 
   const startTime = Date.now();
-  const MIN_DISPLAY = 2500; // ms — minimum time loading screen stays visible
+  const MIN_DISPLAY = 2500; // ms minimum + 400ms fade = ~2.9s total visible
 
   function finishLoading() {
     clearInterval(interval);
